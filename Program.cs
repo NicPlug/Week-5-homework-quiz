@@ -9,6 +9,7 @@ namespace Week_5_homework
     class Terminal
     {
 
+
         const int invalidResponce = -1;
         int? numberOfQuestions = null;
 
@@ -28,7 +29,7 @@ namespace Week_5_homework
         }
 
         //ask for int responce
-        public int AskForInt (string question)
+        public int AskForInt (string question,int min,int max)
         {
             string answer = AskQuestion(question);
         
@@ -39,6 +40,16 @@ namespace Week_5_homework
             return number;
         }
 
+        public int AskMultipleChoiceQuestion (string question, string answer1, string answer2, string answer3, string answer4)
+        {
+            Print(question);
+            Print(answer1);
+            Print(answer2);
+            Print(answer3);
+            Print(answer4);
+
+
+        }
 
 
 
@@ -53,7 +64,7 @@ namespace Week_5_homework
             //finds out how many questions a player would like to answer
             while (numberOfQuestions == null)
             {
-                numberOfQuestions = AskForInt("How many questions will you be answering today(7, 12 or 15)?");
+                numberOfQuestions = AskForInt("How many questions will you be answering today(7, 12 or 15)?",0,100);
                 if (numberOfQuestions == 7 || numberOfQuestions == 12 || numberOfQuestions == 15)
                 {
                     numberOfQuestions = numberOfQuestions;
