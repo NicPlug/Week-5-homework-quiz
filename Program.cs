@@ -131,6 +131,7 @@ namespace Week_5_homework
                         leftOverQuestions[questionIndex] = questionList[index];
                         leftOverAnswers[questionIndex] = answerList[index];
                         ++questionIndex;
+                        if (leftOverQuestions.Length == numberOfQuestions)
                     }
                 }
 
@@ -147,7 +148,6 @@ namespace Week_5_homework
                             Print("Boooooo. No points for you!!!\n");
                         }
                     }
-
                     
                 
             }
