@@ -17,26 +17,28 @@ namespace Week_5_homework
         const int invalidResponce = -1;
         int? numberOfQuestions = null;
 
+        List<int> askedQuestions = new List<int>();
+
         string[] questionList = {"The answer is 1\n1)\n2)\n3)\n4)",
-                                "The answer is 3\n1)\n2)\n3)\n4)",
-                                "The answer is 2\n1)\n2)\n3)\n4)",
-                                "The answer is 1\n1)\n2)\n3)\n4)",
-                                "The answer is 4\n1)\n2)\n3)\n4)",
-                                "The answer is 3\n1)\n2)\n3)\n4)",
-                                "The answer is 4\n1)\n2)\n3)\n4)",
-                                "The answer is 1\n1)\n2)\n3)\n4)",
-                                "The answer is 2\n1)\n2)\n3)\n4)",
-                                "The answer is 3\n1)\n2)\n3)\n4)",
-                                "The answer is 2\n1)\n2)\n3)\n4)",
-                                "The answer is 1\n1)\n2)\n3)\n4)",
-                                "The answer is 1\n1)\n2)\n3)\n4)",
                                 "The answer is 2\n1)\n2)\n3)\n4)",
                                 "The answer is 3\n1)\n2)\n3)\n4)",
                                 "The answer is 4\n1)\n2)\n3)\n4)",
-                                "The answer is 2\n1)\n2)\n3)\n4)",
-                                "The answer is 1\n1)\n2)\n3)\n4)",
-                                "The answer is 3\n1)\n2)\n3)\n4)",
-                                "The answer is 4\n1)\n2)\n3)\n4)"};
+                                "The answer is 5\n1)\n2)\n3)\n4)",
+                                "The answer is 6\n1)\n2)\n3)\n4)",
+                                "The answer is 7\n1)\n2)\n3)\n4)",
+                                "The answer is 8\n1)\n2)\n3)\n4)",
+                                "The answer is 9\n1)\n2)\n3)\n4)",
+                                "The answer is 10\n1)\n2)\n3)\n4)",
+                                "The answer is 11\n1)\n2)\n3)\n4)",
+                                "The answer is 12\n1)\n2)\n3)\n4)",
+                                "The answer is 13\n1)\n2)\n3)\n4)",
+                                "The answer is 14\n1)\n2)\n3)\n4)",
+                                "The answer is 15\n1)\n2)\n3)\n4)",
+                                "The answer is 16\n1)\n2)\n3)\n4)",
+                                "The answer is 17\n1)\n2)\n3)\n4)",
+                                "The answer is 18\n1)\n2)\n3)\n4)",
+                                "The answer is 19\n1)\n2)\n3)\n4)",
+                                "The answer is 20\n1)\n2)\n3)\n4)"};
 
         string[] answerList = { "1",
                                  "3",
@@ -58,9 +60,6 @@ namespace Week_5_homework
                                                  "1",
                                                   "3",
                                                    "4"};
-
-        string[] askTheseQuestions;
-        string[] answersOfQuestions;
 
 
 
@@ -114,47 +113,36 @@ namespace Week_5_homework
                     Print(numberOfQuestions + " is not a valid choice.\n");
                     numberOfQuestions = null;
                 }
+            }
 
 
 
-                for (int index = 0; index < (20-numberOfQuestions); ++index)
+
+                for (int index = 0; index < numberOfQuestions; ++index)
                 {
-                    int questionAnswerToRemove = rng.Next(0, questionList.Length);
-                    string[] leftOverQuestions = new string[questionList.Length - 1];
-                    string[] leftOverAnswers = new string[answerList.Length - 1];
-                    int questionIndex = 0;
-
-                    for (int index2 = 0; index < questionList.Length; ++index)
+                    int numberSelected = rng.Next(0, questionList.Length);
+                   
+                    while (askedQuestions.Contains(numberSelected));
                     {
-                        if (index2 == questionAnswerToRemove)
-                        {
-                            continue;
-                        }
-                        leftOverQuestions[questionIndex] = questionList[index];
-                        leftOverAnswers[questionIndex] = answerList[index];
-                        ++questionIndex;
-                        if (leftOverQuestions.Length == numberOfQuestions)
-                        {
-                            askTheseQuestions = leftOverQuestions;
-                            answersOfQuestions = leftOverQuestions;
-                        }
+                        numberSelected = rng.Next(0, questionList.Length);
                     }
-                }
 
-                    for (int index = 0; index < askTheseQuestions.Length; ++index)
+                    askedQuestions.Add(numberSelected);
+
+                    string playerAnswer = AskQuestion(questionList[numberSelected]);
+                    if (playerAnswer == answerList[numberSelected])
                     {
-                        string playerAnswer = AskQuestion(askTheseQuestions[index]);
-                        if (playerAnswer == answersOfQuestions[index])
-                        {
-                            Print("Hooray. 5 points for you!!!\n");
-                            playerPoints += 5;
-                        }
-                        else
-                        {
-                            Print("Boooooo. No points for you!!!\n");
-                        }
+                        Print("Hooray. 5 points for you!!!\n");
+                        playerPoints += 5;
+                    }
+                    else
+                    {
+                        Print("Boooooo. No points for you!!!\n");
+                    }
 
                     }
+            Print ("You have "+ playerPoints + " points. Thats pretty good!");
+            Print ("GAME OVER");
                     
             
             }
@@ -164,7 +152,6 @@ namespace Week_5_homework
 
 
 
-    }
 
 
 
