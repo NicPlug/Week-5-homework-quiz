@@ -6,12 +6,84 @@ using System.Threading.Tasks;
 
 namespace Week_5_homework
 {
+
+
+
     class Terminal
     {
 
-
         const int invalidResponce = -1;
         int? numberOfQuestions = null;
+        Random rng = new Random();
+        List<int> askedQuestions = new List<int>();
+        int playerPoints = 0;
+
+
+        bool[] questionCheck = {false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,
+                                   false,};
+
+                               
+
+        string[] questionList = {"The answer is 1\n1)\n2)\n3)\n4)",
+                                "The answer is 2\n1)\n2)\n3)\n4)",
+                                "The answer is 3\n1)\n2)\n3)\n4)",
+                                "The answer is 4\n1)\n2)\n3)\n4)",
+                                "The answer is 5\n1)\n2)\n3)\n4)",
+                                "The answer is 6\n1)\n2)\n3)\n4)",
+                                "The answer is 7\n1)\n2)\n3)\n4)",
+                                "The answer is 8\n1)\n2)\n3)\n4)",
+                                "The answer is 9\n1)\n2)\n3)\n4)",
+                                "The answer is 10\n1)\n2)\n3)\n4)",
+                                "The answer is 11\n1)\n2)\n3)\n4)",
+                                "The answer is 12\n1)\n2)\n3)\n4)",
+                                "The answer is 13\n1)\n2)\n3)\n4)",
+                                "The answer is 14\n1)\n2)\n3)\n4)",
+                                "The answer is 15\n1)\n2)\n3)\n4)",
+                                "The answer is 16\n1)\n2)\n3)\n4)",
+                                "The answer is 17\n1)\n2)\n3)\n4)",
+                                "The answer is 18\n1)\n2)\n3)\n4)",
+                                "The answer is 19\n1)\n2)\n3)\n4)",
+                                "The answer is 20\n1)\n2)\n3)\n4)"};
+
+        string[] answerList = { "1",
+                                 "3",
+                                  "2",
+                                   "1",
+                                    "4",
+                                     "3",
+                                      "4",
+                                       "1",
+                                        "2",
+                                         "3",
+                                          "2",
+                                           "1",
+                                            "1",
+                                             "2",
+                                              "3",
+                                               "4",
+                                                "2",
+                                                 "1",
+                                                  "3",
+                                                   "4"};
+
 
 
         //print to the terminal
@@ -40,17 +112,6 @@ namespace Week_5_homework
             return number;
         }
 
-        public int AskMultipleChoiceQuestion (string question, string answer1, string answer2, string answer3, string answer4)
-        {
-            Print(question);
-            Print(answer1);
-            Print(answer2);
-            Print(answer3);
-            Print(answer4);
-
-
-        }
-
 
 
 
@@ -64,7 +125,9 @@ namespace Week_5_homework
             //finds out how many questions a player would like to answer
             while (numberOfQuestions == null)
             {
-                numberOfQuestions = AskForInt("How many questions will you be answering today(7, 12 or 15)?",0,100);
+
+                numberOfQuestions = AskForInt("How many questions will you be answering today(7, 12 or 15)?\n",0,20);
+
                 if (numberOfQuestions == 7 || numberOfQuestions == 12 || numberOfQuestions == 15)
                 {
                     numberOfQuestions = numberOfQuestions;
@@ -77,11 +140,40 @@ namespace Week_5_homework
             }
 
 
+                for (int index = 0; index < numberOfQuestions; ++index)
+                {
+                    int numberSelected = rng.Next(0, questionList.Length);
+
+                    while (questionCheck[numberSelected] == true)
+                    {
+                        numberSelected = rng.Next(0, questionList.Length);
+                    }
+
+                    questionCheck[numberSelected] = true;
+
+                    string playerAnswer = AskQuestion(questionList[numberSelected]);
+                    if (playerAnswer == answerList[numberSelected])
+                    {
+                        Print("Hooray. 5 points for you!!!\n");
+                        playerPoints += 5;
+                    }
+                    else
+                    {
+                        Print("Boooooo. No points for you!!!\n");
+                    }
+
+                }
+            Print ("You have "+ playerPoints + " points. Thats pretty good!");
+            Print ("GAME OVER");
+                    
+            
+            }
+
+
         }
 
 
 
-    }
 
 
 
