@@ -59,6 +59,8 @@ namespace Week_5_homework
                                                   "3",
                                                    "4"};
 
+        string[] askTheseQuestions;
+        string[] answersOfQuestions;
 
 
 
@@ -132,13 +134,17 @@ namespace Week_5_homework
                         leftOverAnswers[questionIndex] = answerList[index];
                         ++questionIndex;
                         if (leftOverQuestions.Length == numberOfQuestions)
+                        {
+                            askTheseQuestions = leftOverQuestions;
+                            answersOfQuestions = leftOverQuestions;
+                        }
                     }
                 }
 
-                    for (int index = 0; index < questionList.Length; ++index)
+                    for (int index = 0; index < askTheseQuestions.Length; ++index)
                     {
-                        string playerAnswer = AskQuestion(questionList[index]);
-                        if (playerAnswer == answerList[index])
+                        string playerAnswer = AskQuestion(askTheseQuestions[index]);
+                        if (playerAnswer == answersOfQuestions[index])
                         {
                             Print("Hooray. 5 points for you!!!\n");
                             playerPoints += 5;
@@ -147,9 +153,10 @@ namespace Week_5_homework
                         {
                             Print("Boooooo. No points for you!!!\n");
                         }
+
                     }
                     
-                
+            
             }
 
 
