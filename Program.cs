@@ -135,7 +135,14 @@ namespace Week_5_homework
 
         public void Run()
         {
-            Print("Welcome to quiz town. Population, YOU!\n");
+
+            for (int i = 0; i < questionCheck.Length; ++i )
+            {
+                questionCheck[i] = false;
+            }
+
+
+                Print("Welcome to quiz town. Population, YOU!\n");
 
             string playerName = AskQuestion("What is your name, random quizzer??");
             Print("Hello, " + playerName + "\n");
